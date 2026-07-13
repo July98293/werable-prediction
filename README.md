@@ -93,13 +93,10 @@ see the model in detail at ![STRESS PREDICTION ML](https://github.com/July98293/
 
 Estimates injury risk over the next 3 days from the last week of ring history. This is adapted from a separate sports-science project (`injury 2/`, a SoccerMon-based injury prediction pipeline for professional athletes) The ring version uses a **separately retrained, reduced model** (`injury 2/model_artifact_ring/`) on only the 4 features: `stress` (HRV-based), `sleep_duration` / `sleep_quality` (from the experimental sleep-sync protocol), and `fatigue` (a movement-volume proxy from steps/calories, standing in for training load).
 
-| Precision-recall curve (pooled out-of-fold) | Confusion matrix (aggregate over folds) |
-|---|---|
-| ![Injury ring model PR curve](injury%202/reports_ring/01_pr_curve.png) | ![Injury ring model confusion matrix](injury%202/reports_ring/02_confusion_matrix.png) |
+ <img src="https://github.com/July98293/werable-prediction/blob/main/assets/model_readiness.png?raw=true" alt="Injury ring model calibration" width="450">
+<img src="https://github.com/July98293/werable-prediction/blob/main/assets/03_confusion_matrix.png?raw=true" alt="Confusion matrix" width="450">
+<img src="https://github.com/July98293/werable-prediction/blob/main/assets/05_risk_trajectory_2_TeamA_3e5f6e2b.png?raw=true" alt="Risk trajectory" width="450">
 
-| Feature importance | Calibration |
-|---|---|
-| ![Injury ring model feature importance](injury%202/reports_ring/03_feature_importance.png) | ![Injury ring model calibration](injury%202/reports_ring/04_calibration.png) |
 
 ## Dashboard
 
