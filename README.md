@@ -75,15 +75,8 @@ Open source python client to read your data from the Colmi R02 family of Smart R
 - [~] Sleep tracking (implemented in `colmi_r02_client/sleep.py`, but experimental / not yet verified against a real ring, see below)
 - [x] "Stress" measurement (ML model on top of heart rate, see below)
 
-## AI features: stress & injury-risk prediction
-
-Two small ML models sit on top of the raw ring data. Both are heart-rate / activity proxies
-
-![Model readiness overview](assets/model_readiness.png)
-
-![Ring data path: sensors, sync, models, output](assets/architecture.png)
-
 ---
+## AI features: stress & injury-risk prediction
 
 ### Stress prediction
 
