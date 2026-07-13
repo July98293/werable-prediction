@@ -195,4 +195,35 @@ Commands:
 
 # Reference
 
-LINK 
+### Stress
+
+1. [Correlazioni tra biomarcatori e stress](https://www.biorxiv.org/content/10.1101/2023.09.16.557862v1.full) - *bioRxiv*
+2. [Validazione sensore da polso per HRV/EDA in guida stressante](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10611310/) - *PMC*
+3. [ML per stress da wearable](https://www.sciencedirect.com/science/article/pii/S1386505623000436) - *review sistematica, ScienceDirect*
+4. [Validazione Fitbit Charge 5 per HR ed EDA](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12308623/) - *PMC*
+5. [EOG + EDA per biomarcatori di ansia](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12270033/) - *cold pressor, PMC*
+6. [Wearable e rilevazione precoce dello stress](https://www.medrxiv.org/content/10.1101/2024.07.19.24310732.full.pdf) - *multimodale, medRxiv*
+7. [Stress-Predict Dataset](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9654418/) - *PPG, FC, respiro*
+8. [Sistema di allerta real-time COVID/stress da wearable](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8799466/) - *Nature*
+9. [Rilevazione infezioni respiratorie con wearable](https://formative.jmir.org/2024/1/e53716) - *JMIR*
+10. [Validazione modello su operatori sanitari](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11292157/) - *PMC*
+11. [Algoritmo smartwatch per infezione polmonare](https://pmc.ncbi.nlm.nih.gov/articles/PMC11512465/) - *PMC*
+12. [Wearable, smartphone e IA contro COVID-19](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8709136/) - *HRV/BPM*
+
+### Cortisol
+
+1. [Classificazione cortisolo salivare basata su HRV](https://www.researchgate.net/publication/390800019_The_salivary_cortisol_classification_based_on_the_heart_rate_variability) - *ResearchGate*
+2. [Stima del cortisolo da bracciale wearable](https://www.researchgate.net/publication/393453678_Cortisol_Estimation_using_Wearable_Wristbands_Comparing_Multilevel_Modelling_and_Machine_Learning) - *ML, ResearchGate*
+3. [Classificazione della fatica con HRV e cortisolo](https://www.nature.com/articles/s41746-025-02320-8) - *approccio multimodale, npj Digital Medicine*
+4. [Distinguere stress fisico e psicologico da segnali wearable e cortisolo salivare](https://arxiv.org/pdf/2604.12671) - *arXiv*
+5. [Cortisolo e sonno: impatto del sonno sull'asse HPA](https://pmc.ncbi.nlm.nih.gov/articles/PMC2902103/) - *PMC*
+6. [Armonizzazione dei dati](https://pmc.ncbi.nlm.nih.gov/articles/PMC8631396/pdf/ijpds-06-1680.pdf) - *IJPDS*
+
+### Injury
+
+1. [Predizione infortuni negli atleti con carico e wellness (Jiang et al.)](https://pubmed.ncbi.nlm.nih.gov/36972679/) - *PMID 36972679, modello a 3 biomarcatori, PubMed*
+2. [SoccerMon: dataset longitudinale di monitoraggio di calciatrici d'élite](https://www.nature.com/articles/s41597-024-03212-4) - *GPS, wellness, Scientific Data*
+3. [Machine learning per la predizione di infortuni nello sport: review](https://bmcsportsscimedrehabil.biomedcentral.com/articles/10.1186/s13102-024-00860-2) - *review sistematica, BMC*
+4. [Cortisolo come marcatore di overtraining e rischio infortunio](https://pmc.ncbi.nlm.nih.gov/articles/PMC6835946/) - *rassegna asse HPA e carico, PMC*
+5. [Carico di allenamento e rischio infortunio (acute:chronic workload ratio)](https://bjsm.bmj.com/content/50/5/273) - *Gabbett, BJSM*
+6. [HRV come indicatore di recupero e prontezza atletica](https://pmc.ncbi.nlm.nih.gov/articles/PMC5900775/) - *review, PMC*
