@@ -4,16 +4,15 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
 
-## Problem statement
+## Problem statement & Journey
 
 If an athletes get injured, she/he lose the season. Cortisol is the key ormon to spot dangerous stress buildup.
 
 We originally wanted to make a cortisol patch with MIP technology, but while we wait for the reagents we built a cheap version using colorimetry.
 
-![Werable](https://github.com/July98293/werable-prediction/blob/main/5954255193178312126.jpg)
-![Werable](https://github.com/July98293/werable-prediction/blob/main/5954255193178312127.jpg)
-![Werable](https://github.com/July98293/werable-prediction/blob/main/5954255193178312128.jpg)
-
+<img src="https://raw.githubusercontent.com/July98293/werable-prediction/main/5954255193178312126.jpg" width="200">
+<img src="https://raw.githubusercontent.com/July98293/werable-prediction/main/5954255193178312127.jpg" width="200">
+<img src="https://raw.githubusercontent.com/July98293/werable-prediction/main/5954255193178312128.jpg" width="200">
 
 It work with enzimatic pathways 
 
@@ -27,10 +26,11 @@ it also is reduce by glucose and ascorbate much more concentrated than cortisol 
 cortisolo + NAD⁺ →[11β-HSD2]→ cortisone + NADH → [diaforasi] → resorufina
 ```
 
+Once cortisol is detected the blue patch turn purple/reddish. The other one is for lactate, and it turn complete transparent, is secreated during anaerobic stress.
+
 We also modified a wearable to predict injury and stress with ML, while building the cortisol database and the ML for hormones.
 
-![Werable](https://github.com/July98293/werable-prediction/blob/main/5954255193178312125.jpg)
-
+<img src="https://raw.githubusercontent.com/July98293/werable-prediction/main/5954255193178312125.jpg" width="300">
 
 We start from the Colmi R02 repo and connect **stress** and **injury** prediction, which we previously trained separately, and finally top it all off with a dashboard that shows the data.
 
@@ -44,7 +44,7 @@ Regenerate these plots with `python "injury 2/scripts/generate_ring_report_plots
 ### Future vision: cortisol & hormones
 
 - **Hormones** are hard because they require night-sleep data, which in the Colmi is still a developing feature.
-- **Cortisol** — the dataset is missing, so we're creating it ourselves with cortisol strips.
+- **Cortisol** the dataset is missing, so we're creating it ourselves with cortisol strips.
 
 Roadmap priority:
 
@@ -83,6 +83,8 @@ Two small ML models sit on top of the raw ring data. Both are heart-rate / activ
 
 ![Ring data path: sensors, sync, models, output](assets/architecture.png)
 
+---
+
 ### Stress prediction
 
 see the model in detail at ![STRESS PREDICTION ML](https://github.com/July98293/stress-ml/blob/main/README.md)
@@ -112,6 +114,8 @@ colmi_r02_dashboard --address=70:CB:0D:D0:34:1C --db=ring_data.sqlite
 Then open <http://127.0.0.1:5050>. `--address` is optional  historical charts work from a database populated by `colmi_r02_client sync` alone; a live snapshot (current HR/SpO2/HRV, today's activity, last night's sleep, stress, and injury risk) needs an address, entered in the page if not passed on the command line. A live snapshot does ~20–30 sequential BLE reads (the injury model alone needs a 14-day movement baseline plus a week of heart-rate logs), so it can take up to a minute, that's normal, not a hang.
 
 ![Ring dashboard](https://github.com/July98293/werable-prediction/blob/main/dashboard.png)
+
+---
 
 
 ## Getting started
