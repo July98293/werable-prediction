@@ -10,9 +10,23 @@ If an athletes get injured, she/he lose the season. Cortisol is the key ormon to
 
 We originally wanted to make a cortisol patch with MIP technology, but while we wait for the reagents we built a cheap version using colorimetry.
 
-IMMAGE
+![Werable](.png)
 
-We also modified a wearable to predict injury and stress with ML, whilee building the cortisol database and the ML for hormones.
+It work with enzimatic pathways 
+
+```
+cortisolo --[OH⁻, EtOH]--> enediolo
+enediolo + resazurina --> cortisolo ossidato (21-aldeide/acido etianico) + resorufina
+```
+it also is reduce by glucose and ascorbate much more concentrated than cortisol in sweath so i tneed a filtration layer, or another rection that use nezime could be
+
+```
+cortisolo + NAD⁺ →[11β-HSD2]→ cortisone + NADH → [diaforasi] → resorufina
+```
+
+We also modified a wearable to predict injury and stress with ML, while building the cortisol database and the ML for hormones.
+
+![Werable](.png)
 
 We start from the Colmi R02 repo and connect **stress** and **injury** prediction, which we previously trained separately, and finally top it all off with a dashboard that shows the data.
 
@@ -68,11 +82,11 @@ Two small ML models sit on top of the raw ring data. Both are heart-rate / activ
 
 ### Stress prediction
 
-PUT THE OTHER GITHUB
+see the model in detail at [![STRESS PREDICTION ML](https://github.com/July98293/stress-ml/blob/main/README.md)
 
 ### Injury-risk prediction
 
-`colmi_r02_client predict-injury` estimates injury risk over the next 3 days from the last week of ring history. This is adapted from a separate sports-science project (`injury 2/`, a SoccerMon-based injury prediction pipeline for professional athletes) that normally needs subjective wellness surveys (readiness, soreness, mood, ...) and coach-logged training-load diaries (RPE × session duration, ACWR, ...) — none of which a consumer ring can produce. So the ring integration uses a **separately retrained, reduced model** (`injury 2/model_artifact_ring/`) on only the 4 features a ring can approximate: `stress` (HR-based), `sleep_duration` / `sleep_quality` (from the experimental sleep-sync protocol), and `fatigue` (a movement-volume proxy from steps/calories, standing in for training load).
+Estimates injury risk over the next 3 days from the last week of ring history. This is adapted from a separate sports-science project (`injury 2/`, a SoccerMon-based injury prediction pipeline for professional athletes) The ring version uses a **separately retrained, reduced model** (`injury 2/model_artifact_ring/`) on only the 4 features: `stress` (HRV-based), `sleep_duration` / `sleep_quality` (from the experimental sleep-sync protocol), and `fatigue` (a movement-volume proxy from steps/calories, standing in for training load).
 
 | Precision-recall curve (pooled out-of-fold) | Confusion matrix (aggregate over folds) |
 |---|---|
