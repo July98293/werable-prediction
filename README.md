@@ -10,7 +10,10 @@ If an athletes get injured, she/he lose the season. Cortisol is the key ormon to
 
 We originally wanted to make a cortisol patch with MIP technology, but while we wait for the reagents we built a cheap version using colorimetry.
 
-![Werable](.png)
+![Werable](https://github.com/July98293/werable-prediction/blob/main/5954255193178312126.jpg)
+![Werable](https://github.com/July98293/werable-prediction/blob/main/5954255193178312127.jpg)
+![Werable](https://github.com/July98293/werable-prediction/blob/main/5954255193178312128.jpg)
+
 
 It work with enzimatic pathways 
 
@@ -26,13 +29,13 @@ cortisolo + NAD⁺ →[11β-HSD2]→ cortisone + NADH → [diaforasi] → resoru
 
 We also modified a wearable to predict injury and stress with ML, while building the cortisol database and the ML for hormones.
 
-![Werable](.png)
+![Werable](https://github.com/July98293/werable-prediction/blob/main/5954255193178312125.jpg)
+
 
 We start from the Colmi R02 repo and connect **stress** and **injury** prediction, which we previously trained separately, and finally top it all off with a dashboard that shows the data.
 
 You can find detailed info on the stress ML and the injury ML below.
 
-<!-- IMAGE: add architecture / overview image here -->
 
 > **Disclaimer:** Injury prediction is genuinely hard, it's a rare recorded event and a near-unsolved problem in sports science. PR-AUC here is barely above the ~0.6% base rate. This is *not* a bug: the full, non-reduced model in `injury 2/` has the same ceiling (see its README's "Second pass" section). Precision is low bc the data ara umbaance with few recorded case, meaning most "high risk" flags will be false alarms. This is why `colmi_r02_client predict-injury` intentionally only ever reports a coarse **high / medium / low risk over the next 3 days**, not a percentage, see `colmi_r02_client/injury_predict.py`'s docstring for exactly which inputs are real ring data vs. proxies, and treat the output as illustrative, never as medical or coaching advice.
 
@@ -58,7 +61,7 @@ Open source python client to read your data from the Colmi R02 family of Smart R
 - **Heart Rate (HR)**
 - **Blood Oxygen (SpO2)**
 
-[Source code on GitHub](https://github.com/tahnok/colmi_r02_client)
+[Source code on GitHubfor colmi-02/Credit](https://github.com/tahnok/colmi_r02_client)
 
 
 ## Reverse engineering status
@@ -82,7 +85,7 @@ Two small ML models sit on top of the raw ring data. Both are heart-rate / activ
 
 ### Stress prediction
 
-see the model in detail at [![STRESS PREDICTION ML](https://github.com/July98293/stress-ml/blob/main/README.md)
+see the model in detail at ![STRESS PREDICTION ML](https://github.com/July98293/stress-ml/blob/main/README.md)
 
 ### Injury-risk prediction
 
@@ -106,18 +109,15 @@ IMAGE
 colmi_r02_dashboard --address=70:CB:0D:D0:34:1C --db=ring_data.sqlite
 ```
 
-Then open <http://127.0.0.1:5050>. `--address` is optional — historical charts work from a database populated by `colmi_r02_client sync` alone; a live snapshot (current HR/SpO2/HRV, today's activity, last night's sleep, stress, and injury risk) needs an address, entered in the page if not passed on the command line. A live snapshot does ~20–30 sequential BLE reads (the injury model alone needs a 14-day movement baseline plus a week of heart-rate logs), so it can take up to a minute — that's normal, not a hang.
+Then open <http://127.0.0.1:5050>. `--address` is optional  historical charts work from a database populated by `colmi_r02_client sync` alone; a live snapshot (current HR/SpO2/HRV, today's activity, last night's sleep, stress, and injury risk) needs an address, entered in the page if not passed on the command line. A live snapshot does ~20–30 sequential BLE reads (the injury model alone needs a 14-day movement baseline plus a week of heart-rate logs), so it can take up to a minute, that's normal, not a hang.
 
-![Ring dashboard](assets/dashboard.png)
-
-Every card that isn't a straightforward sensor reading says so: the injury-risk gauge only ever shows a coarse low/medium/high band (never a raw percentage, see the caveats above), HRV and sleep are marked "experimental", and the movement card is explicit that this ring has no GPS — distance shown is estimated from steps, not a real route.
+![Ring dashboard](https://github.com/July98293/werable-prediction/blob/main/dashboard.png)
 
 
 ## Getting started
 
 ### Using the command line
 
-If you don't know python that well, I **highly** recommend you install [pipx](https://pipx.pypa.io/stable/installation/). It's purpose built for managing python packages intended to be used as standalone programs, and it will keep your computer safe from the pitfalls of python packaging. Once installed you can do:
 
 ```sh
 pipx install git+https://github.com/tahnok/colmi_r02_client
@@ -159,8 +159,6 @@ Syncing from 2024-12-01 01:43:04.723232+00:00 to 2024-12-01 02:03:20.150315+00:0
 Done
 ```
 
-The database schema is available [here](https://github.com/tahnok/colmi_r02_client/blob/main/tests/database_schema.sql).
-
 The most up to date and comprehensive help for the command line can be found by running:
 
 ```sh
@@ -190,37 +188,6 @@ Commands:
   set-time                     Set the time on the ring, required if you...
   sync                         Sync all data from the ring to a sqlite...
 ```
-
-### With the library / SDK
-
-You can use the `colmi_r02_client.client` class as a library to do your own stuff in python. I've tried to write a lot of docstrings, which are visible on [the docs site](https://tahnok.github.io/colmi_r02_client/).
-
-## Communication protocol details
-
-I've kept a lab-notebook-style stream-of-consciousness set of notes on <https://notes.tahnok.ca/>, starting with [2024-07-07 Smart Ring Hacking](https://notes.tahnok.ca/blog/2024-07-07+Smart+Ring+Hacking) and eventually getting put under one folder. That's the best source for all the raw stuff.
-
-At a high level, you can talk to and read from the ring using BLE. There's no binding or security keys required to get started. (That's kind of bad, but the range on the ring is really tiny and I'm not too worried about someone getting my steps or heart rate information. Up to you.)
-
-The ring has a BLE GATT service with the UUID `6E40FFF0-B5A3-F393-E0A9-E50E24DCCA9E`. It has two important characteristics:
-
-1. **RX:** `6E400002-B5A3-F393-E0A9-E50E24DCCA9E`, which you write to.
-2. **TX:** `6E400003-B5A3-F393-E0A9-E50E24DCCA9E`, which you can "subscribe" to and is where the ring responds to packets you have sent.
-
-This closely resembles the [Nordic UART Service](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/libraries/bluetooth_services/services/nus.html) and UART/Serial communications in general.
-
-### Packet structure
-
-The ring communicates in 16-byte packets for both sending and receiving. The first byte of the packet is always a command/tag/type. For example, the packet you send to ask for the battery level starts with `0x03`, and the response packet also starts with `0x03`.
-
-The last byte of the packet is always a checksum/CRC. This value is calculated by summing up the other 15 bytes in the packet and taking the result modulo 255. See `colmi_r02_client.packet.checksum`.
-
-The middle 14 bytes are the "subdata" or payload data. Some requests (like `colmi_r02_client.set_time.set_time_packet`) include additional data. Almost all responses use the subdata to return the data you asked for.
-
-Some requests result in multiple responses that you have to consider together to get the data. `colmi_r02_client.steps.SportDetailParser` is an example of this behaviour.
-
-If you want to know the actual packet structure for a given feature's request or response, take a look at the source code for that feature. I've tried to make it pretty easy to follow even if you don't know python very well. There are also some tests that you can refer to for validated request/response pairs and human-readable interpretations of that data.
-
-Got questions or ideas? [Send me an email](mailto:tahnok+colmir02@gmail.com) or [open an issue](https://github.com/tahnok/colmi_r02_client/issues/new).
 
 # Reference
 
